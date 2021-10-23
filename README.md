@@ -19,6 +19,14 @@ Features of note:
 
 
 ## Usage
+As is custom for scientific code, the usability is sub-optimal.
+The following steps are required to get a simulation running
 
-`python main.py`
+Prerequisites:
+1. install `python` and `pip`
+2. install the following Python packages via `pip`: numpy, scipy, matplotlib
+
+Usage: 
+1. change the `action` and `pml` values in `main.py` to their desired values
+2. `python main.py`
 
