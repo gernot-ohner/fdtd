@@ -2,7 +2,6 @@ import math
 
 import matplotlib.pyplot as plt
 import scipy.constants as const
-from typing import *
 
 import tests
 import source as src

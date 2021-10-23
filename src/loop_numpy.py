@@ -4,9 +4,6 @@ import common
 import scipy.constants as const
 import math
 import source as src
-import matplotlib.pyplot as plt
-
-
 
 timesteps = 200
 dx = 0.05
