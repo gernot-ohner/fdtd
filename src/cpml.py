@@ -77,16 +77,25 @@ def cpml_constants(nx: int, ny: int, sigmas: List[np.ndarray], dx: float, dy: fl
     alpha_mx = np.ones((nx, ny))
     alpha_my = np.ones((nx, ny))
     
-    # Set up alpha values for PML region (10 cells)
-    for i in range(10):
-        alpha_x[i, :] = (i + 1) / 10
-        alpha_x[-i - 1, :] = (i + 1) / 10
-        alpha_mx[i, :] = (i + 1) / 10
-        alpha_mx[-i - 1, :] = (i + 1) / 10
-        alpha_y[:, i] = (i + 1) / 10
-        alpha_y[:, -i - 1] = (i + 1) / 10
-        alpha_my[:, i] = (i + 1) / 10
-        alpha_my[:, -i - 1] = (i + 1) / 10
+    # Set up alpha values for PML region (up to 10 cells, or grid size if smaller)
+    pml_thickness = min(10, (nx - 1) // 2, ny // 2)
+    for i in range(pml_thickness):
+        if i < alpha_x.shape[0]:
+            alpha_x[i, :] = (i + 1) / 10
+        if i < alpha_x.shape[0]:
+            alpha_x[-i - 1, :] = (i + 1) / 10
+        if i < alpha_mx.shape[0]:
+            alpha_mx[i, :] = (i + 1) / 10
+        if i < alpha_mx.shape[0]:
+            alpha_mx[-i - 1, :] = (i + 1) / 10
+        if i < alpha_y.shape[1]:
+            alpha_y[:, i] = (i + 1) / 10
+        if i < alpha_y.shape[1]:
+            alpha_y[:, -i - 1] = (i + 1) / 10
+        if i < alpha_my.shape[1]:
+            alpha_my[:, i] = (i + 1) / 10
+        if i < alpha_my.shape[1]:
+            alpha_my[:, -i - 1] = (i + 1) / 10
     
     bex = np.exp(-(sigmas[0] / (k + alpha_x)) * (dt / const.epsilon_0))
     bey = np.exp(-(sigmas[1] / (k + alpha_y)) * (dt / const.epsilon_0))

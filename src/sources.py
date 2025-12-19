@@ -35,4 +35,4 @@ def null_source(time_step: int) -> float:
     Returns:
         Always returns 0.0
     """
-    return time_step * 0
+    return float(time_step * 0)
