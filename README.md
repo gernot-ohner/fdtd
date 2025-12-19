@@ -43,6 +43,8 @@ This will install:
 - `numpy` (>=1.20.0)
 - `scipy` (>=1.7.0)
 - `matplotlib` (>=3.4.0)
+- `pytest` (>=7.0.0) - for running unit tests
+- `pytest-cov` (>=4.0.0) - for test coverage
 
 ## Usage
 
@@ -142,6 +144,56 @@ src/
 └── cpml.py          # Convolutional PML implementation
 ```
 
+## Testing
+
+The project includes a comprehensive unit test suite using pytest.
+
+### Running Tests
+
+**Run all tests:**
+```bash
+pytest
+```
+
+**Run with verbose output:**
+```bash
+pytest -v
+```
+
+**Run specific test file:**
+```bash
+pytest tests/test_common.py
+```
+
+**Run specific test:**
+```bash
+pytest tests/test_common.py::TestFieldCreation::test_make_fields
+```
+
+**Run with coverage report:**
+```bash
+pytest --cov=src --cov-report=html
+```
+
+This will generate an HTML coverage report in `htmlcov/index.html`.
+
+### Test Structure
+
+The test suite includes:
+
+- **Unit tests** for core functions:
+  - `test_sources.py` - Source function tests
+  - `test_config.py` - Configuration dataclass tests
+  - `test_common.py` - Common utility function tests
+  - `test_no_pml.py` - No-PML implementation tests
+  - `test_bpml.py` - Berenger PML tests
+  - `test_cpml.py` - Convolutional PML tests
+  
+- **Integration tests**:
+  - `test_callers.py` - Integration tests for caller functions
+
+All tests are designed to run quickly and verify correctness of the core FDTD algorithms.
+
 ## Code Quality
 
 This project has been modernized with:
@@ -151,6 +203,7 @@ This project has been modernized with:
 - Clean separation of concerns
 - Comprehensive documentation
 - Modern Python best practices
+- Comprehensive unit test suite
 
 ## License
 
